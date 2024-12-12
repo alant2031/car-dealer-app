@@ -1,5 +1,5 @@
 'use server';
-import http from './api';
+import http from './lib/api';
 import { StatusResponse, VehicleMake } from './lib/types';
 
 export async function getMakesForVehicleType() {
