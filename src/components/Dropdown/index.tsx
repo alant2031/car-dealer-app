@@ -9,10 +9,11 @@ import {
 interface IProps {
 	items: string[];
 	placeholder: string;
+	onChange?: (value: string) => void;
 }
-function Dropdown({ items, placeholder }: IProps) {
+function Dropdown({ items, placeholder, onChange }: IProps) {
 	return (
-		<Select>
+		<Select onValueChange={onChange}>
 			<SelectTrigger className="w-[180px]">
 				<SelectValue placeholder={placeholder} />
 			</SelectTrigger>
