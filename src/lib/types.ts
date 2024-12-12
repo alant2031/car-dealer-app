@@ -1,4 +1,4 @@
-export type VehicleMake = {
+export interface ApiResponse {
 	Count: number;
 	Message: string;
 	SearchCriteria: string;
@@ -8,7 +8,7 @@ export type VehicleMake = {
 		VehicleTypeId: number;
 		VehicleTypeName: string;
 	}[];
-};
+}
 export enum StatusResponse {
 	OK = 'OK',
 	ERROR = 'ERROR'
