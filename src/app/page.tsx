@@ -1,11 +1,18 @@
 'use client';
 
 import Dropdown from '@/components/Dropdown';
+import { Button } from '@/components/ui/button';
+
 import { listVehicleMakes, listYearsFrom } from '@/lib/utils';
+import Link from 'next/link';
 import { useEffect, useState } from 'react';
 
-export default function Home() {
-	const [vehicleMakes, setVehicleMakes] = useState<string[]>([]);
+type TMake = {
+	label: string;
+	value: string;
+};
+export default function HomePage() {
+	const [vehicleMakes, setVehicleMakes] = useState<TMake[]>([]);
 	const years = listYearsFrom(2015);
 	const [selectedMake, setSelectedMake] = useState<string | undefined>(
 		undefined
@@ -17,7 +24,12 @@ export default function Home() {
 
 	useEffect(() => {
 		listVehicleMakes().then((data) => {
-			setVehicleMakes(data as string[]);
+			setVehicleMakes(
+				data?.map((make) => ({
+					value: make.makeId,
+					label: make.makeName
+				})) as TMake[]
+			);
 		});
 	}, []);
 
@@ -34,15 +46,13 @@ export default function Home() {
 				onChange={(value) => setSelectedMake(value)}
 			/>
 			<Dropdown
-				items={years}
+				items={years.map((year) => ({ label: year, value: year }))}
 				placeholder="Select Model Year"
 				onChange={(value) => setSelectedYear(value)}
 			/>
-			{bothSelected && (
-				<p>
-					You have selected {selectedMake} {selectedYear}
-				</p>
-			)}
+			<Button variant="outline" disabled={!bothSelected}>
+				<Link href={`/result/${selectedMake}/${selectedYear}`}>Next</Link>
+			</Button>
 		</div>
 	);
 }

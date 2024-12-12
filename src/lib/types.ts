@@ -3,7 +3,7 @@ export type VehicleMake = {
 	Message: string;
 	SearchCriteria: string;
 	Results: {
-		MakeId: number;
+		MakeId: string;
 		MakeName: string;
 		VehicleTypeId: number;
 		VehicleTypeName: string;

@@ -21,7 +21,10 @@ export async function listVehicleMakes() {
 
 	if (response.status === StatusResponse.OK) {
 		const results = response.data?.Results;
-		return results?.map((result) => result.MakeName);
+		return results?.map((result) => ({
+			makeId: result.MakeId,
+			makeName: result.MakeName
+		}));
 	}
 	return [];
 }

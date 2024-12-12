@@ -7,7 +7,7 @@ import {
 } from '@/components/ui/select';
 
 interface IProps {
-	items: string[];
+	items: { label: string; value: string }[];
 	placeholder: string;
 	onChange?: (value: string) => void;
 }
@@ -19,8 +19,8 @@ function Dropdown({ items, placeholder, onChange }: IProps) {
 			</SelectTrigger>
 			<SelectContent>
 				{items.map((item) => (
-					<SelectItem key={item} value={item}>
-						{item}
+					<SelectItem key={item.value} value={item.value}>
+						{item.label}
 					</SelectItem>
 				))}
 			</SelectContent>
